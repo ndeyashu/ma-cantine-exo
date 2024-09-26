@@ -1,0 +1,14 @@
+{
+  "build": {
+    "cache_dependancies": true
+  },
+  "deploy": {
+    "managetasks": [
+      "buildnpm",
+      "buildnpmvue3",
+      "collectstatic --noinput",
+      "migrate --noinput",
+      "compilemessages"
+    ]
+  }
+}

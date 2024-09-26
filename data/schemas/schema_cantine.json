@@ -1,0 +1,201 @@
+{
+  "fields": [
+    {
+      "description": "Identifiant Unique de la Cantine",
+      "example": "71331",
+      "name": "id",
+      "title": "Identifiant",
+      "type": "integer"
+    },
+    {
+      "description": "Nom la Cantine",
+      "example": "Restaurant Scolaire de Marigny-le-Lozon",
+      "name": "name",
+      "title": "Nom",
+      "type": "string"
+    },
+    {
+      "description": "Identifiant du [Système d'Identification du Répertoire des Etablissements](https://fr.wikipedia.org/wiki/Syst%C3%A8me_d%27identification_du_r%C3%A9pertoire_des_%C3%A9tablissements) (SIRET) qui identifie la cantine",
+      "example": "20005822000092",
+      "name": "siret",
+      "title": "Siret",
+      "type": "string"
+    },
+    {
+      "description": "Ville dans laquelle se trouve la cantine",
+      "example": "Marigny-Le-Lozon",
+      "name": "city",
+      "title": "Ville",
+      "type": "string"
+    },
+    {
+      "description": "Code Insee de la ville dans laquelle se trouve la cantine",
+      "example": "50292",
+      "name": "city_insee_code",
+      "title": "Code Insee ville",
+      "type": "string"
+    },
+    {
+      "description": "Code postal de la ville dans laquelle se trouve la cantine",
+      "example": "50570",
+      "name": "postal_code",
+      "title": "Code postal",
+      "type": "string"
+    },
+    {
+      "description": "Code insee de l'EPCI dans laquelle se trouve la cantine",
+      "example": "50570242900793",
+      "name": "epci",
+      "title": "Code Insee EPCI",
+      "type": "string"
+    },
+    {
+      "description": "Libellé de l'EPCI dans laquelle se trouve la cantine",
+      "example": "CC Communauté Lesneven Côte des Légendes",
+      "name": "epci_lib",
+      "title": "Libellé EPCI",
+      "type": "string"
+    },
+    {
+      "description": "Code Insee du département dans lequel se trouve la cantine",
+      "example": "29",
+      "name": "department",
+      "title": "Code Département",
+      "type": "string"
+    },
+    {
+      "description": "Libellé du département dans lequel se trouve la cantine",
+      "example": "Finistère",
+      "name": "department_lib",
+      "title": "Département Libellé",
+      "type": "string"
+    },
+    {
+      "description": "Code Insee de la région dans lequel se trouve la cantine",
+      "example": "53",
+      "name": "region",
+      "title": "Code Région",
+      "type": "string"
+    },
+    {
+      "description": "Libellé de la région dans lequel se trouve la cantine",
+      "example": "Bretagne",
+      "name": "region_lib",
+      "title": "Région libellé",
+      "type": "string"
+    },
+    {
+      "description": "Modèle économique de la cantine. Il existe 2 types différents : public (cantine publique), private (cantine privée).",
+      "example": "public",
+      "name": "economic_model",
+      "title": "Modèle Economique",
+      "type": "string"
+    },
+    {
+      "description": "Gestionnaire de la cantine. La cantine peut-être gérée directement ou de manière concédée. Si la valeur est 'concédée', la délégation peut être totale ou partielle",
+      "example": "conceded",
+      "name": "management_type",
+      "title": "Type de Management",
+      "type": "string"
+    },
+    {
+      "description": "Lieu de production et de service des repas. Il existe 4 types différents : central (cuisine centrale sans lieu de consommation), central_serving (cuisine centrale qui accueille aussi des convives sur place), site (cantine qui produit les repas sur place), site_cooked_elsewhere (cantine qui sert des repas preparés par une cuisine centrale, appelé également satellite). Dans ce dernier cas, le champ central_producer_siret renseigne l'identifiant SIRET de la cuisine préparant les repas. Dans le cas d'une cantine qui cuisine pour d'autres cantines, le champ satellite_canteens_count renseigne le nombre de cantines satellites.",
+      "example": "central",
+      "name": "production_type",
+      "title": "Type de Production",
+      "type": "string"
+    },
+    {
+      "description": "Nombre de cantines satellites pour une cantine qui produit les repas sur place",
+      "example": "0",
+      "name": "satellite_canteens_count",
+      "title": "Nombre de cantines satellites",
+      "type": "integer"
+    },
+    {
+      "description": "Identifiant du [Système d'Identification du Répertoire des Etablissements](https://fr.wikipedia.org/wiki/Syst%C3%A8me_d%27identification_du_r%C3%A9pertoire_des_%C3%A9tablissements) (SIRET) qui identifie la cantine ayant produit les repas",
+      "example": "",
+      "name": "central_producer_siret",
+      "title": "SIRET de la cantine centrale",
+      "type": "string"
+    },
+    {
+      "description": "Date de création de la cantine au format ISO 8601",
+      "example": "2018-01-01",
+      "name": "creation_date",
+      "title": "Date de création",
+      "type": "string"
+    },
+    {
+      "description": "Nombre de repas servis, en moyenne, par jour dans la cantine",
+      "example": "100",
+      "name": "daily_meal_count",
+      "title": "Nombre de repas par jour",
+      "type": "integer"
+    },
+    {
+      "description": "Nombre de repas servis, en moyenne, par an dans la cantine",
+      "example": "20000",
+      "name": "yearly_meal_count",
+      "title": "Nombre de repas par an",
+      "type": "integer"
+    },
+    {
+      "description": "Ministère de tutelle de la cantine, s'il y en a un",
+      "example": "Ministère de l'Education Nationale",
+      "name": "line_ministry",
+      "title": "Ministère de tutelle",
+      "type": "string"
+    },
+    {
+      "description": "Date de dernière modification de la cantine au format ISO 8601",
+      "example": "2018-01-01",
+      "name": "modification_date",
+      "title": "Date de modification",
+      "type": "string"
+    },
+    {
+      "description": "Logo de la cantine",
+      "example": "https://www.mangerlocal.fr/static/img/logo.png",
+      "name": "logo",
+      "title": "Logo",
+      "type": "string"
+    },
+    {
+      "description": "Liste définissant les secteurs d'activités de la cantine. Chaque élément de cette liste est défini par quatre paramètres :  id, name, category, has_line_ministry (ministère de tutelle).",
+      "example": "[\"Secondaire collège\", \"Ecole primaire (maternelle et élémentaire)\"]",
+      "name": "sectors",
+      "title": "Secteurs",
+      "type": "array"
+    },
+    {
+      "description": "A télédéclaré ses données lors de campagne 2022 (portant sur les données 2021)",
+      "example": "true",
+      "name": "declaration_donnees_2021",
+      "title": "A téléclaré en 2022 sur les données 2021",
+      "type": "boolean"
+    },
+    {
+      "description": "A télédéclaré ses données lors de campagne 2023 (portant sur les données 2022)",
+      "example": "true",
+      "name": "declaration_donnees_2022",
+      "title": "A téléclaré en 2023 sur les données 2022",
+      "type": "boolean"
+    },
+    {
+      "description": "A télédéclaré ses données lors de campagne 2024 (portant sur les données 2023). Cette campagne est encore en cours. Les données peuvent donc évoluer",
+      "example": "true",
+      "name": "declaration_donnees_2023_en_cours",
+      "title": "A téléclaré en 2024 sur les données 2023",
+      "type": "boolean"
+    },
+    {
+      "description": "A un gestionnaire sur (email) et a fais au moins une action (à définir) - Indique si la cantine est active sur l'apllication Ma Cantine ou si elle a été importée via une source de données externe",
+      "example": "true",
+      "name": "active_on_ma_cantine",
+      "title": "Actif sur Ma Cantine",
+      "type": "boolean"
+    }
+  ],
+  "title": "Schéma des établissements de restauration collective"
+}
