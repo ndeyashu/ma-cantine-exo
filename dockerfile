@@ -16,6 +16,25 @@ RUN pip install --no-cache-dir -r requirements.txt
 # Copier le reste des fichiers de l'application dans le conteneur
 COPY . .
 
+WORKDIR /app/2024-frontend
+
+
+# Mettez à jour le système et installez les dépendances nécessaires
+RUN apt-get update && apt-get install -y \
+    curl \
+    gnupg \
+    libpq-dev \
+    && curl -fsSL https://deb.nodesource.com/setup_20.x | bash - \
+    && apt-get install -y nodejs \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/*
+
+
+# Accédez au répertoire frontend et installez les dépendances Node.js
+RUN npm install
+
+WORKDIR /app
+
 # Exposer le port sur lequel Django va écouter
 EXPOSE 8000
 

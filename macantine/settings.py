@@ -29,7 +29,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.getenv("SECRET")
+SECRET_KEY = "m-6q0DePV_m0XNFV2kIY6kAFJdxBL_X0fbSf4E-Cf7VZu6uQavpQN4TEAW4b3eVag3w"
 SECURE_SSL_REDIRECT = os.getenv("FORCE_HTTPS") == "True"
 
 # The site uses http or https?
@@ -45,7 +45,7 @@ AUTHENTICATION_BACKENDS = [
     "macantine.backends.EmailUsernameBackend",
 ]
 
-ALLOWED_HOSTS = ['localhost', '127.0.0.1']
+ALLOWED_HOSTS = ['*']
 # ALLOWED_HOSTS = [x.strip() for x in os.getenv("ALLOWED_HOSTS", "").split(",") if x]
 ENFORCE_HOST = os.getenv("ENFORCE_HOST", None)
 
@@ -157,15 +157,15 @@ WSGI_APPLICATION = "macantine.wsgi.application"
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
 DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.postgresql",
-        "USER": os.getenv("DB_USER"),
-        "NAME": os.getenv("DB_NAME"),
-        "PASSWORD": os.getenv("DB_PASSWORD"),
-        "HOST": os.getenv("DB_HOST"),
-        "PORT": os.getenv("DB_PORT"),
-        "CONN_MAX_AGE": 60,
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'ma_cantine',
+        'USER': 'ma_cantine_user',
+        'PASSWORD': 'secret',
+        'HOST': 'db',  # Le nom du service dans docker-compose.yml
+        'PORT': '5432',  # Port par défaut de PostgreSQL
     }
+
 }
 
 
@@ -220,11 +220,12 @@ AWS_STORAGE_BUCKET_NAME = os.getenv("CELLAR_BUCKET_NAME")
 AWS_LOCATION = "media"
 AWS_QUERYSTRING_AUTH = False
 
-DEFAULT_FILE_STORAGE = os.getenv("DEFAULT_FILE_STORAGE")
+DEFAULT_FILE_STORAGE = 'django.core.files.storage.FileSystemStorage'
+STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.StaticFilesStorage'
 MEDIA_ROOT = os.getenv("MEDIA_ROOT", os.path.join(BASE_DIR, "media"))
 MEDIA_URL = "/media/"
 
-STATICFILES_STORAGE = os.getenv("STATICFILES_STORAGE")
+#STATICFILES_STORAGE = os.getenv("STATICFILES_STORAGE")
 SESSION_COOKIE_AGE = 31536000
 SESSION_COOKIE_SECURE = os.getenv("SECURE") == "True"
 SESSION_COOKIE_HTTPONLY = True
@@ -299,12 +300,14 @@ STATICFILES_DIRS = [
     ("dsfr/dist", BASE_DIR / "2024-frontend/node_modules/@gouvfr/dsfr/dist"),
 ]
 WEBPACK_LOADER = {
-    "DEFAULT": {
-        "CACHE": DEBUG,
-        "BUNDLE_DIR_NAME": "/bundles/",
-        "STATS_FILE": os.path.join(FRONTEND_DIR, "webpack-stats.json"),
+    'DEFAULT': {
+        'BUNDLE_DIR_NAME': 'dist/',  # Chemin relatif vers vos fichiers compilés
+        'STATS_FILE': os.path.join(BASE_DIR, 'frontend', 'webpack-stats.json'),
+        'POLL_INTERVAL': 0.1,
+        'IGNORE': ['.+\.hot-update.js', '.+\.map']
     }
 }
+
 
 DJANGO_VITE_PLUGIN = {
     "DEV_MODE": DEBUG_FRONT,
@@ -314,7 +317,9 @@ DJANGO_VITE_PLUGIN = {
 # Email
 DEFAULT_FROM_EMAIL = os.getenv("DEFAULT_FROM_EMAIL")
 CONTACT_EMAIL = os.getenv("CONTACT_EMAIL")
-EMAIL_BACKEND = os.getenv("EMAIL_BACKEND")
+#EMAIL_BACKEND = os.getenv("EMAIL_BACKEND")
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'  # Envoie des emails à la console pour le développement
+
 
 if DEBUG and EMAIL_BACKEND == "django.core.mail.backends.smtp.EmailBackend":
     EMAIL_HOST = "localhost"
@@ -577,5 +582,9 @@ MAX_DAYS_HISTORICAL_RECORDS = (
 WAGTAIL_SITE_NAME = "ma-cantine"
 # WAGTAILADMIN_BASE_URL # Declare if null URL in notification emails
 WAGTAILDOCS_EXTENSIONS = ["csv", "docx", "key", "odt", "pdf", "pptx", "rtf", "txt", "xlsx", "zip"]
+WAGTAILADMIN_STATIC_FILE_VERSION_STRINGS = True  # ou False selon vos besoins
+WAGTAILADMIN_BASE_URL = ''  # Update with your actual IP/domain
+
+
 
 

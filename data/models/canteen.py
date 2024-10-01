@@ -34,6 +34,14 @@ def validate_siret(siret):
     if not luhn_checksum_valid:
         raise ValidationError("Le numéro SIRET n'est pas valide.")
 
+REDACTED_APPRO_YEARS_CHOICES = [
+        (2020, '2020'),
+        (2021, '2021'),
+        (2022, '2022'),
+        (2023, '2023'),
+        (2024, '2023'),
+    ]
+
 
 def get_diagnostic_year_choices():
     return [(y, str(y)) for y in range(get_diagnostic_lower_limit_year(), get_diagnostic_upper_limit_year())]
@@ -225,7 +233,7 @@ class Canteen(SoftDeletionModel):
         verbose_name="état de publication",
     )
     redacted_appro_years = ChoiceArrayField(
-        base_field=models.IntegerField(choices=get_diagnostic_year_choices),
+        base_field=models.IntegerField(choices=REDACTED_APPRO_YEARS_CHOICES),
         default=list,
         blank=True,
         verbose_name="les années pour lesquelles les données d'appro sont masquées",
